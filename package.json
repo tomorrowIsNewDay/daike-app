@@ -1,0 +1,20 @@
+{
+  "name": "daike-app",
+  "version": "1.0.0",
+  "description": "this is a demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leeming",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.6.7",
+    "uuid": "^3.3.2"
+  }
+}
