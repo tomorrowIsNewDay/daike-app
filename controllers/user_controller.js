@@ -93,7 +93,23 @@ const login = async(ctx, next) => {
 
  // 更新
  const user_update = async(ctx, next) => {
-
+    const req = ctx.request.body
+    // 获取用户的 userId
+    const result = await user_model.updateOne({
+        userId: req.userId
+    }, req)
+    ctx.status = 200
+    if(result.nModified == 1) {
+        ctx.body = {
+            code: 1,
+            msg: 'save successed!'
+        }
+    }else{
+        ctx.body = {
+            code: 0,
+            msg: 'save failed'
+        }
+    }
  }
 
  module.exports = {
