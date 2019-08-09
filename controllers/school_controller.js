@@ -6,11 +6,11 @@
 const school_model = require('../models/school.js')
 
 const getSchoolByName = async(ctx, next)=>{
-    const req = ctx.request.body
+    const req = ctx.request.query
     
     const schools = await school_model.find({
         name: new RegExp(req.schoolName)
-    }).limit(10)
+    })
 
     ctx.status = 200
     if(schools) {
