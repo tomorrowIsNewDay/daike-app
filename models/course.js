@@ -31,7 +31,6 @@
         type: String
       },
       schoolId: {
-        required: true,
         type: String
       },
       school: {

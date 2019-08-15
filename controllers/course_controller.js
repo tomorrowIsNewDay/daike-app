@@ -5,16 +5,16 @@
  */
 
 const uuidv1 = require('uuid/v1');
-const course_col = require('../models/course')
+const course_col = require('../models/course.js')
 
 // 发布课程
 const publishCourse = async (ctx, next) => {
     const uuid = uuidv1()
     let req = ctx.request.body
-    
+    console.log(req)
     ctx.status = 200
 
-    if( !req.publisher || !req.schoolId || !req.courseTime || !req.coursePlace ){
+    if( !req.publisher || !req.courseTime || !req.coursePlace ){
         ctx.body = {
             code: 0,
             msg: 'less required params'
