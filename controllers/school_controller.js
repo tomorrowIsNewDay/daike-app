@@ -13,6 +13,7 @@ const getSchoolByName = async(ctx, next)=>{
     })
 
     ctx.status = 200
+    ctx.response.type = 'application/json'
     if(schools) {
         ctx.body = {
             code: 1,
