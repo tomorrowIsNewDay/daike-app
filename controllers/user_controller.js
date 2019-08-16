@@ -7,6 +7,8 @@ const user_model = require('../models/user.js')
 const pwd_model = require('../models/password.js')
 const pwdfn = require('../utils/pwd')
 
+const addToken = require('../utils/addtoken')
+const proving = require('../utils/proving')
 const uuidv1 = require('uuid/v1')
 
 const login = async(ctx, next) => {
@@ -35,7 +37,10 @@ const login = async(ctx, next) => {
     // console.log(pass)
     const match = await pwdfn.validate(req.password, pass.hash)
     if(match){
+        // 添加token
+        let my_token = addToken({user:req.account, id: req.password })
         ctx.body = {
+            my_token,
             code: 1,
             msg: 'login success',
             data: user
@@ -94,6 +99,16 @@ const login = async(ctx, next) => {
  // 更新
  const user_update = async(ctx, next) => {
     const req = ctx.request.body
+    // 获取 token
+    const my_token = ctx.request.headers.my_token
+    if(my_token) {
+        let rs = proving(my_token)
+        if(!rs) {
+            console.log('token验证失败')
+            return
+        }
+    }
+
     // 获取用户的 userId
     const result = await user_model.updateOne({
         userId: req.userId
