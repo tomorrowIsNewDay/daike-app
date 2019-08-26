@@ -47,6 +47,7 @@ const getCourse = async(ctx, next) => {
 
     if(cousres) {
         ctx.status = 200
+        ctx.type = 'json'
         ctx.body = {
             code: 1,
             data: cousres
